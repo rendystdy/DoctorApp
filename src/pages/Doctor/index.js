@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {Gap, HomeProfile, NewsItem} from '../../components';
 import {Fire} from '../../config';
-import {colors, fonts, showError, getData} from '../../utils';
+import {colors, fonts, showError, getData, storeData} from '../../utils';
 import {ILNullPhoto} from '../../assets';
 
 const Doctor = ({navigation}) => {
@@ -36,6 +36,8 @@ const Doctor = ({navigation}) => {
 
   const getUserData = () => {
     getData('user').then(res => {
+      console.log(res);
+
       const data = res;
       data.photo = res?.photo?.length > 1 ? {uri: res.photo} : ILNullPhoto;
       setProfile(res);

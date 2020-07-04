@@ -11,7 +11,7 @@ const UpdateProfile = ({navigation}) => {
     fullName: '',
     profession: '',
     email: '',
-    photoForDB: '',
+    photoForDB: '123',
   });
   const [password, setPassword] = useState('');
   const [photo, setPhoto] = useState(ILNullPhoto);

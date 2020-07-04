@@ -19,8 +19,9 @@ const Chatting = ({navigation, route}) => {
 
   useEffect(() => {
     getDataUserFromLocal();
-    const chatID = `${dataDoctor.data.uid}_${user.uid}`;
+    const chatID = `${dataDoctor.data.userId}_${user.uid}`;
     const urlFirebase = `chatting/${chatID}/allChat/`;
+
     Fire.database()
       .ref(urlFirebase)
       .on('value', snapshot => {
@@ -46,7 +47,7 @@ const Chatting = ({navigation, route}) => {
           setChatData(allDataChat);
         }
       });
-  }, [dataDoctor.data.uid, user.uid]);
+  }, [dataDoctor.data.userId, user.uid]);
 
   const getDataUserFromLocal = () => {
     getData('user').then(res => {
@@ -64,15 +65,15 @@ const Chatting = ({navigation, route}) => {
       chatContent: chatContent,
     };
 
-    const chatID = `${dataDoctor.data.uid}_${user.uid}`;
+    const chatID = `${dataDoctor.data.userId}_${user.uid}`;
 
     const urlFirebase = `chatting/${chatID}/allChat/${setDateChat(today)}`;
     const urlMessageUser = `messages/${user.uid}/${chatID}`;
-    const urlMessageDoctor = `messages/${dataDoctor.data.uid}/${chatID}`;
+    const urlMessageDoctor = `messages/${dataDoctor.data.userId}/${chatID}`;
     const dataHistoryChatForUser = {
       lastContentChat: chatContent,
       lastChatDate: today.getTime(),
-      uidPartner: dataDoctor.data.uid,
+      uidPartner: dataDoctor.data.userId,
     };
     const dataHistoryChatForDoctor = {
       lastContentChat: chatContent,
